@@ -1,0 +1,7 @@
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\bin\Debug\Escalonador.exe.config
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\bin\Debug\Escalonador.exe
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\bin\Debug\Escalonador.pdb
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\obj\Debug\Escalonador.csprojAssemblyReference.cache
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\obj\Debug\Escalonador.csproj.CoreCompileInputs.cache
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\obj\Debug\Escalonador.exe
+C:\Users\jvmso\OneDrive - sga.pucminas.br\SI_3\AED\TI\Escalonador\obj\Debug\Escalonador.pdb
