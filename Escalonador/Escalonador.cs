@@ -23,36 +23,37 @@ namespace Escalonador
             this.tContexto = tContexto;
             this.sleep = sleep;
         }
-
+        /// <summary>
+        /// Simula a execução do escalonador
+        /// </summary>
         public void Run()
         {
-            ;
             int pos = 0;
-            while (!Vazia() && pos < Todos.Length)
+            while (!TodosVazia() && pos < Todos.Length) // Enquanto todas as filas de processos não estiverem vazias
             {
                 Console.WriteLine("\t\tProcessando Lista de Processos com Prioridade " + (pos + 1));
 
-                while (!Todos[pos].Vazio())
+                while (!Todos[pos].Vazio()) // Enquanto uma fila especifica não estiver vazia
                 {
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("\nTroca de contexto...");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    Thread.Sleep(tContexto);
+                    Thread.Sleep(tContexto); // Simulando o tempo gasto pela troca de contexto
 
-                    Processo processo = (Processo)(Todos[pos].Retirar());
+                    Processo processo = (Processo)(Todos[pos].Retirar()); // Retira o processo em execução da fila de processos
 
                     Console.WriteLine("Processando: " + processo.ToString());
 
-                    if (CPU(processo) > 0)
+                    if (CPU(processo) > 0) // Se o retorno da CPU for maior que 0, o processo foi finalizado
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("Processo Finalizado");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
-                    else
+                    else // O processo não terminou
                     {
-                        AdicionarProcesso(processo);
+                        AdicionarProcesso(processo); // Adiciona o processo em uma nova fila de prioridade (prioridade -1)
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("Processo REBAIXADO para prioridade {0}", processo.Prioridade);
                         Console.ForegroundColor = ConsoleColor.White;
@@ -64,14 +65,20 @@ namespace Escalonador
                 pos++;
             }
         }
+        /// <summary>
+        /// Simulation of the process execution
+        /// </summary>
+        /// <param name="p">Process to be executed</param>
+        /// <returns>Returns 1, if the process was completed;
+        /// Returns -1, if the process was not completed.</returns>
         private int CPU(Processo p)
         {
-            int aux = 1;
+            int aux = 1; // represents how much of the quantum was completed
 
             while (aux <= Quantum && p.QtdeCiclos > 0)
             {
                 p.DiminuirQtdeCiclos();
-                Thread.Sleep(sleep);
+                Thread.Sleep(sleep); // Simula o tempo gasto pela CPU
                 aux++;
             }
 
@@ -82,6 +89,10 @@ namespace Escalonador
 
             return -1;
         }
+        /// <summary>
+        /// Allocate the process to it's new priority queue
+        /// </summary>
+        /// <param name="p">The process to be alocated</param>
         public void AdicionarProcesso(Processo p)
         {
             switch (p.Prioridade)
@@ -99,10 +110,18 @@ namespace Escalonador
                 default: break;
             }
         }
-        public bool Vazia()
+        /// <summary>
+        /// Verify if all priority queues are empty
+        /// </summary>
+        /// <returns></returns>
+        public bool TodosVazia()
         {
             return Todos[0].Vazio() && Todos[1].Vazio() && Todos[2].Vazio() && Todos[3].Vazio() && Todos[4].Vazio() && Todos[5].Vazio() && Todos[6].Vazio() && Todos[7].Vazio() && Todos[8].Vazio() && Todos[9].Vazio();
         }
+        /// <summary>
+        /// Ta de brincation wit me?
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder auxImpressao = new StringBuilder();
